@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="MLDefender - Advanced AI-powered malware detection in images using machine learning">
+    <title>MLDefender - AI Malware Detection</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-shield-halved"></i>
+                <span>MLDefender</span>
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#analyze" class="nav-link">Analyze</a>
+                <a href="#steganography" class="nav-link">Steganography</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-eye-slash"></i>
+                    <span>Steganography & AI Detection</span>
+                </div>
+                <h1 class="hero-title">
+                    Advanced
+                    <span class="gradient-text">Steganography Analysis</span>
+                </h1>
+                <p class="hero-description">
+                    Hide and extract secret data within images using advanced steganography techniques.
+                    Detect hidden malware with AI-powered algorithms including LSB, DCT, and DWT analysis.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#analyze" class="btn btn-primary">
+                        <i class="fas fa-upload"></i>
+                        Analyze Image
+                    </a>
+                    <a href="#about" class="btn btn-secondary">
+                        <i class="fas fa-info-circle"></i>
+                        Learn More
+                    </a>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-value">3+</div>
+                        <div class="stat-label">Algorithms</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">95%</div>
+                        <div class="stat-label">Detection Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">&lt;2s</div>
+                        <div class="stat-label">Processing Time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Steganography Algorithms</h2>
+                <p class="section-subtitle">Multiple advanced techniques for data hiding and detection</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>LSB (Least Significant Bit)</h3>
+                    <p>Hides data in the least significant bits of pixel values. Simple, fast, and widely used for basic
+                        steganography with minimal visual impact.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <h3>DCT (Discrete Cosine Transform)</h3>
+                    <p>Embeds data in frequency domain coefficients. More robust against compression and provides better
+                        security than spatial domain methods.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>DWT (Discrete Wavelet Transform)</h3>
+                    <p>Uses wavelet decomposition for data hiding. Offers excellent imperceptibility and resistance to
+                        various image processing attacks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analysis Section -->
+    <section id="analyze" class="analyze">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Analyze Image</h2>
+                <p class="section-subtitle">Upload an image or try our sample malware images</p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="upload">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    Upload Image
+                </button>
+                <button class="tab-btn" data-tab="samples">
+                    <i class="fas fa-images"></i>
+                    Sample Images
+                </button>
+            </div>
+
+            <!-- Upload Tab -->
+            <div class="tab-content active" id="upload-tab">
+                <div class="upload-area" id="upload-area">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Drop your image here</h3>
+                    <p>or click to browse</p>
+                    <input type="file" id="file-input" accept=".jpg,.jpeg,.png" hidden>
+                    <button class="btn btn-primary" id="browse-btn">
+                        <i class="fas fa-folder-open"></i>
+                        Browse Files
+                    </button>
+                    <p class="upload-hint">Supports: JPG, JPEG, PNG (Max 16MB)</p>
+                </div>
+
+                <!-- Image Preview -->
+                <div class="preview-area" id="preview-area" style="display: none;">
+                    <div class="preview-card">
+                        <img id="preview-image" src="" alt="Preview">
+                        <button class="btn-close" id="clear-btn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-primary btn-large" id="analyze-btn">
+                        <i class="fas fa-search"></i>
+                        Analyze Image
+                    </button>
+                </div>
+            </div>
+
+            <!-- Samples Tab -->
+            <div class="tab-content" id="samples-tab">
+                <div class="samples-grid">
+                    <div class="sample-category">
+                        <h3><i class="fas fa-virus"></i> Visible Malware</h3>
+                        <div class="sample-items">
+                            <button class="sample-btn" data-sample="1_Robotigen.exe.png">
+                                <i class="fas fa-image"></i>
+                                <span>Robotigen</span>
+                            </button>
+                            <button class="sample-btn" data-sample="2_fakreon.png">
+                                <i class="fas fa-image"></i>
+                                <span>Fakreon</span>
+                            </button>
+                            <button class="sample-btn" data-sample="3_autorun_k.png">
+                                <i class="fas fa-image"></i>
+                                <span>Autorun</span>
+                            </button>
+                            <button class="sample-btn" data-sample="4_obfuscated.png">
+                                <i class="fas fa-image"></i>
+                                <span>Obfuscated</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="sample-category">
+                        <h3><i class="fas fa-eye-slash"></i> Hidden Malware</h3>
+                        <div class="sample-items">
+                            <button class="sample-btn" data-sample="7_dog_invisible_MW.png">
+                                <i class="fas fa-image"></i>
+                                <span>Dog (Hidden)</span>
+                            </button>
+                            <button class="sample-btn" data-sample="10_Birds_with_MW.png">
+                                <i class="fas fa-image"></i>
+                                <span>Birds (Hidden)</span>
+                            </button>
+                            <button class="sample-btn" data-sample="12_F5_MW.jpeg">
+                                <i class="fas fa-image"></i>
+                                <span>F5 Logo</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="sample-category">
+                        <h3><i class="fas fa-check-circle"></i> Clean Images</h3>
+                        <div class="sample-items">
+                            <button class="sample-btn" data-sample="7_dog_not_MW.jpg">
+                                <i class="fas fa-image"></i>
+                                <span>Dog (Clean)</span>
+                            </button>
+                            <button class="sample-btn" data-sample="11_Retro_Not_MW.png">
+                                <i class="fas fa-image"></i>
+                                <span>Retro</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing image...</p>
+            </div>
+
+            <!-- Results -->
+            <div class="results" id="results" style="display: none;">
+                <div class="result-card">
+                    <div class="result-header" id="result-header">
+                        <!-- Dynamic content -->
+                    </div>
+
+                    <div class="result-body">
+                        <div class="chart-container">
+                            <canvas id="results-chart"></canvas>
+                        </div>
+
+                        <div class="probabilities-list" id="probabilities-list">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steganography Section -->
+    <section id="steganography" class="steganography">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Steganography Tool</h2>
+                <p class="section-subtitle">Hide or extract secret data within images</p>
+            </div>
+
+            <!-- Steganography Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="encode">
+                    <i class="fas fa-lock"></i>
+                    Hide Data
+                </button>
+                <button class="tab-btn" data-tab="decode">
+                    <i class="fas fa-unlock"></i>
+                    Extract Data
+                </button>
+            </div>
+
+            <!-- Encode Tab -->
+            <div class="tab-content active" id="encode-tab">
+                <div class="stego-container">
+                    <div class="stego-upload-section">
+                        <h3><i class="fas fa-image"></i> Select Cover Image</h3>
+                        <div class="upload-area stego-upload" id="encode-upload-area">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h4>Drop your cover image here</h4>
+                            <p>or click to browse</p>
+                            <input type="file" id="encode-file-input" accept=".jpg,.jpeg,.png" hidden>
+                            <button class="btn btn-primary" id="encode-browse-btn">
+                                <i class="fas fa-folder-open"></i>
+                                Browse Files
+                            </button>
+                        </div>
+
+                        <!-- Encode Preview -->
+                        <div class="stego-preview" id="encode-preview" style="display: none;">
+                            <img id="encode-preview-image" src="" alt="Cover Image">
+                            <button class="btn-close" id="encode-clear-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="capacity-info" id="capacity-info" style="display: none;">
+                                <i class="fas fa-info-circle"></i>
+                                <span id="capacity-text"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stego-data-section">
+                        <h3><i class="fas fa-key"></i> Secret Data</h3>
+                        <textarea id="secret-data" class="stego-textarea"
+                            placeholder="Enter the secret message you want to hide..." rows="6"></textarea>
+
+                        <div class="password-section">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="use-password-encode">
+                                <span>Encrypt with password</span>
+                            </label>
+                            <input type="password" id="encode-password" class="stego-input"
+                                placeholder="Enter password (optional)" style="display: none;">
+                        </div>
+
+                        <button class="btn btn-primary btn-large" id="encode-btn" disabled>
+                            <i class="fas fa-lock"></i>
+                            Hide Data in Image
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Encode Results -->
+                <div class="stego-results" id="encode-results" style="display: none;">
+                    <div class="result-card">
+                        <div class="result-header safe">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">
+                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            </div>
+                            <h2 style="color: var(--success);">Data Hidden Successfully!</h2>
+                            <p id="encode-result-message"></p>
+                        </div>
+                        <div class="result-body">
+                            <div class="stego-result-image">
+                                <img id="encoded-image-preview" src="" alt="Encoded Image">
+                            </div>
+                            <div class="stego-metadata" id="encode-metadata">
+                                <!-- Dynamic metadata -->
+                            </div>
+                            <button class="btn btn-primary btn-large" id="download-encoded-btn">
+                                <i class="fas fa-download"></i>
+                                Download Encoded Image
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decode Tab -->
+            <div class="tab-content" id="decode-tab">
+                <div class="stego-container">
+                    <div class="stego-upload-section">
+                        <h3><i class="fas fa-image"></i> Select Encoded Image</h3>
+                        <div class="upload-area stego-upload" id="decode-upload-area">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h4>Drop your encoded image here</h4>
+                            <p>or click to browse</p>
+                            <input type="file" id="decode-file-input" accept=".jpg,.jpeg,.png" hidden>
+                            <button class="btn btn-primary" id="decode-browse-btn">
+                                <i class="fas fa-folder-open"></i>
+                                Browse Files
+                            </button>
+                        </div>
+
+                        <!-- Decode Preview -->
+                        <div class="stego-preview" id="decode-preview" style="display: none;">
+                            <img id="decode-preview-image" src="" alt="Encoded Image">
+                            <button class="btn-close" id="decode-clear-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="stego-data-section">
+                        <h3><i class="fas fa-unlock"></i> Decryption</h3>
+
+                        <div class="password-section">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="use-password-decode">
+                                <span>Image is password protected</span>
+                            </label>
+                            <input type="password" id="decode-password" class="stego-input" placeholder="Enter password"
+                                style="display: none;">
+                        </div>
+
+                        <button class="btn btn-primary btn-large" id="decode-btn" disabled>
+                            <i class="fas fa-unlock"></i>
+                            Extract Hidden Data
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Decode Results -->
+                <div class="stego-results" id="decode-results" style="display: none;">
+                    <div class="result-card">
+                        <div class="result-header safe">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">
+                                <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            </div>
+                            <h2 style="color: var(--success);">Data Extracted Successfully!</h2>
+                            <p id="decode-result-message"></p>
+                        </div>
+                        <div class="result-body">
+                            <h3>Extracted Secret Data:</h3>
+                            <div class="extracted-data-container">
+                                <pre id="extracted-data"></pre>
+                                <button class="btn btn-secondary" id="copy-data-btn">
+                                    <i class="fas fa-copy"></i>
+                                    Copy to Clipboard
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="loading" id="stego-loading" style="display: none;">
+                <div class="spinner"></div>
+                <p id="stego-loading-text">Processing...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-shield-halved"></i>
+                        <span>MLDefender</span>
+                    </div>
+                    <p>Advanced AI-powered malware detection for image-based threats.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Algorithms</h4>
+                    <ul>
+                        <li>LSB Steganography</li>
+                        <li>DCT Transform</li>
+                        <li>DWT Analysis</li>
+                        <li>CNN Detection</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Developers</h4>
+                    <ul>
+                        <li><i class="fas fa-user-circle"></i> Dinesh</li>
+                        <li><i class="fas fa-user-circle"></i> Gokul</li>
+                        <li><i class="fas fa-user-circle"></i> Abipriyen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 MLDefender. Advanced Steganography & Malware Detection Platform.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/stego.js') }}"></script>
+</body>
+
+</html>
+```
