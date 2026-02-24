@@ -3,5 +3,5 @@ Werkzeug==3.0.1
 Pillow==10.1.0
 numpy==1.26.2
 cryptography==41.0.7
-opencv-python
+opencv-python-headless
 boto3
